@@ -151,7 +151,7 @@ import {
     SideNavigationLevelsExampleComponent,
     SideNavigationTitlesExampleComponent
 } from './containers/side-navigation/examples/side-navigation-examples.component';
-import { TableExampleComponent } from './containers/table/examples/table-example.component';
+import { TableExampleComponent, TableNewExampleComponent } from './containers/table/examples/table-example.component';
 import { TabsExampleComponent, TabSelectionExampleComponent } from './containers/tabs/examples/tabs-examples-component';
 import {
     TileActionsExampleComponent,
@@ -356,6 +356,7 @@ const ROUTES: Routes = [
         SideNavigationLevelsExampleComponent,
         SideNavigationTitlesExampleComponent,
         TableExampleComponent,
+        TableNewExampleComponent,
         TabsExampleComponent,
         TabSelectionExampleComponent,
         TileActionsExampleComponent,

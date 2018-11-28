@@ -1,0 +1,20 @@
+<table class="fd-table">
+  <thead>
+    <tr>
+      <th *ngFor="let header of headers" (click)="sortFunction(header.sort)">
+        <ng-template
+            [ngTemplateOutlet]="headerTemplate"
+            [ngTemplateOutletContext]="{ $implicit: header }">
+        </ng-template>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of rows" [attr.aria-selected]="row.selected">
+      <ng-template
+          [ngTemplateOutlet]="rowTemplate"
+          [ngTemplateOutletContext]="{ $implicit: row }">
+      </ng-template>
+    </tr>
+  </tbody>
+</table>
