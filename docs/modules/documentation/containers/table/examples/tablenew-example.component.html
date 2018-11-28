@@ -1,0 +1,48 @@
+<fd-tablenew [(headers)]="tableHeaders" [(rows)]="tableRows">
+    <ng-template #headerTemplate let-header>
+          {{header.title}}
+    </ng-template>
+    <ng-template #rowTemplate let-row>
+        <td>
+          <input type="checkbox" [(ngModel)]="row.selected"/>
+        </td>
+        <td>
+          <fd-image [size]="'m'" [circle]="true" [photo]="row.image"></fd-image>
+        </td>
+        <td>
+          <a (click)="receiveClick(row.column1)">{{row.column1}}</a>
+        </td>
+        <td>
+          {{row.column2}}
+        </td>
+        <td>
+          {{row.column3}}
+        </td>
+        <td>
+          {{row.date}}
+        </td>
+        <td>
+          <fd-icon [glyph]="row.type"></fd-icon>
+        </td>
+        <td>
+            <fd-popover>
+                <fd-popover-control>
+                    <button fd-button [fdType]="'secondary'" [glyph]="'vertical-grip'"></button>
+                </fd-popover-control>
+                <fd-popover-body>
+                    <fd-menu>
+                        <fd-menu-list>
+                            <fd-menu-item *ngFor="let item of row.contextualMenuOptions">
+                                <a [attr.href]="'#'">{{item}}</a>
+                            </fd-menu-item>
+                        </fd-menu-list>
+                    </fd-menu>
+                </fd-popover-body>
+            </fd-popover>
+        </td>
+        <td>
+          <button (click)='delete(row)'></button>
+        </td>
+    </ng-template>
+</fd-tablenew>
+<button (click)="showData()">Show data in example(implementation)</button>
