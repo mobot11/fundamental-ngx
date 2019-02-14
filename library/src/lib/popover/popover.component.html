@@ -1,8 +1,8 @@
 <div *ngIf="isDropdown" class="fd-dropdown" [ngClass]="{ 'fd-dropdown--compact': compact, 'fd-dropdown--toolbar': toolbar }">
     <div class="fd-popover">
-        <div class="fd-popover__control">
+        <div class="fd-popover__control" [popper]="popperContent" [popperTrigger]="'click'" [(popperPlacement)]="popperPlacement">
             <button
-                fd-button
+                fd-buttond
                 class="fd-dropdown__control fd-button"
                 [ngClass]="
                     (btnType ? ' fd-button--' + btnType : '') +
@@ -19,12 +19,11 @@
                 <ng-content></ng-content>
             </button>
         </div>
-        <ng-container *ngTemplateOutlet="popoverBodyTpl"></ng-container>
     </div>
 </div>
 <div *ngIf="!isDropdown" class="fd-popover"
     [ngClass]="{ 'fd-popover--right' : alignment == 'right'}">
-    <div
+    <div [popper]="popperContent" [popperTrigger]="'click'" [(popperPlacement)]="popperPlacement"
         #popoverControlWrapper
         class="fd-popover__control"
         [attr.aria-expanded]="this.disabled ? false : isOpen"
@@ -36,17 +35,16 @@
     >
         <ng-content select="fd-popover-control"></ng-content>
     </div>
-    <ng-container *ngTemplateOutlet="popoverBodyTpl"></ng-container>
 </div>
 
-<ng-template #popoverBodyTpl>
+<popper-content #popperContent>
     <div
-        [ngClass]="{  'fd-popover__body': popoverBodyHasContent,
-                      'fd-popover__body--no-arrow': isDropdown || !arrow,
-                      'fd-popover__body--right' : alignment == 'right' }"
+        [ngClass]="{'fd-popover__body': popoverBodyHasContent,
+                    'fd-popover__body--no-arrow': isDropdown || !arrow,
+                    'fd-popover__body--right' : alignment == 'right' }"
         [attr.aria-hidden]="disabled ? true : !isOpen">
         <div #popoverBodyContent>
             <ng-content select="fd-popover-body"></ng-content>
         </div>
     </div>
-</ng-template>
+</popper-content>

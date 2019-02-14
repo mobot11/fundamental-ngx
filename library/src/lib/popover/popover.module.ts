@@ -5,10 +5,11 @@ import { UtilsModule } from '../utils/utils.module';
 import { PopoverComponent } from './popover.component';
 import { PopoverControlComponent } from './popover-control.component';
 import { PopoverBodyComponent } from './popover-body.component';
+import { NgxPopperModule } from 'ngx-popper';
 
 @NgModule({
     declarations: [PopoverComponent, PopoverControlComponent, PopoverBodyComponent],
-    imports: [CommonModule, UtilsModule],
+    imports: [CommonModule, UtilsModule, NgxPopperModule.forRoot({disableDefaultStyling: true})],
     exports: [PopoverComponent, PopoverControlComponent, PopoverBodyComponent]
 })
 export class PopoverModule {}
