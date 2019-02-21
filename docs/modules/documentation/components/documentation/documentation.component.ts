@@ -7,12 +7,11 @@ import { Router } from '@angular/router';
     templateUrl: './documentation.component.html'
 })
 export class DocumentationComponent implements OnInit {
-
     @ViewChild('content') contentElRef: ElementRef;
 
     components = [
         { url: 'action-bar', name: 'Action Bar', status: 'ACTIVE' },
-        { url: 'alert', name: 'Alert', status: 'SAFE' },
+        { url: 'alert', name: 'Alert', status: 'UNSAFE' },
         { url: 'badgeLabel', name: 'Badge', status: 'SAFE' },
         { url: 'breadcrumb', name: 'Breadcrumb', status: 'SAFE' },
         { url: 'button', name: 'Button', status: 'ACTIVE' },
@@ -20,6 +19,7 @@ export class DocumentationComponent implements OnInit {
         { url: 'calendar', name: 'Calendar', status: 'SAFE' },
         { url: 'comboboxInput', name: 'Combobox Input', status: 'SAFE' },
         { url: 'datePicker', name: 'Date Picker', status: 'SAFE' },
+        { url: 'datetime-picker', name: 'Datetime Picker', status: 'UNSAFE' },
         { url: 'dropdown', name: 'Dropdown', status: 'SAFE' },
         { url: 'form', name: 'Form', status: 'SAFE' },
         { url: 'icon', name: 'Icon', status: 'SAFE' },
@@ -31,9 +31,10 @@ export class DocumentationComponent implements OnInit {
         { url: 'loadingSpinner', name: 'Loading Spinner', status: 'SAFE' },
         { url: 'menu', name: 'Menu', status: 'SAFE' },
         { url: 'modal', name: 'Modal', status: 'UNSAFE' },
+        { url: 'multi-input', name: 'Multi Input', status: 'UNSAFE' },
         { url: 'pagination', name: 'Pagination', status: 'SAFE' },
         { url: 'popover', name: 'Popover', status: 'ACTIVE' },
-        { url: 'searchInput', name: 'Search Input', status: 'SAFE' },
+        { url: 'searchInput', name: 'Search Input', status: 'ACTIVE' },
         { url: 'shellbar', name: 'Shellbar', status: 'ACTIVE' },
         { url: 'sideNavigation', name: 'Side Navigation', status: 'SAFE' },
         { url: 'table', name: 'Table', status: 'UNSAFE' },
@@ -41,7 +42,8 @@ export class DocumentationComponent implements OnInit {
         { url: 'tile', name: 'Tile', status: 'SAFE' },
         { url: 'time', name: 'Time', status: 'SAFE' },
         { url: 'timePicker', name: 'Time Picker', status: 'SAFE' },
-        { url: 'toggle', name: 'Toggle', status: 'ACTIVE'}
+        { url: 'toggle', name: 'Toggle', status: 'ACTIVE' },
+        { url: 'token', name: 'Token', status: 'ACTIVE' },
     ];
 
     layouts = [
@@ -50,7 +52,8 @@ export class DocumentationComponent implements OnInit {
 
     utilities = [
         { url: 'file-input', name: 'File Input', status: 'UNSAFE' },
-        { url: 'infiniteScroll', name: 'Infinite Scroll', status: 'UNSAFE' }
+        { url: 'infiniteScroll', name: 'Infinite Scroll', status: 'UNSAFE' },
+        { url: 'scroll-spy', name: 'Scroll Spy', status: 'UNSAFE' }
     ];
 
     search: string = '';
@@ -60,7 +63,6 @@ export class DocumentationComponent implements OnInit {
     constructor(private router: Router) {}
 
     ngOnInit() {
-
         // sort the list alphabetically
         this.components.sort((el1, el2) => {
             if (el1.name < el2.name) {
@@ -75,7 +77,7 @@ export class DocumentationComponent implements OnInit {
     }
 
     selectComponent(component) {
-        this.router.navigate(['/docs', component]).then(() => {
+        this.router.navigate(['/', component]).then(() => {
             this.skipNavClicked();
         });
     }

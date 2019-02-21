@@ -3,9 +3,10 @@ import {
     ViewEncapsulation,
     Inject,
     ElementRef,
-    OnInit
+    OnInit, Input
 } from '@angular/core';
 import { ModalService } from './modal.service';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'fd-modal',
@@ -17,6 +18,13 @@ export class ModalComponent implements OnInit {
     resolve: Function;
     reject: Function;
     result: Promise<any>;
+    afterClosed = new Subject<any>();
+
+    @Input()
+    width: string = '480px';
+
+    @Input()
+    height: string;
 
     private _openModalCount: number;
 
@@ -34,7 +42,9 @@ export class ModalComponent implements OnInit {
         if (!closedByService) {
             this.modalService.popModal();
         }
+
         this._openModalCount = this.modalService.getModalCount();
+        this.afterClosed.next();
     }
 
     dismiss(reason?, closedByService: boolean = false) {
@@ -46,6 +56,7 @@ export class ModalComponent implements OnInit {
             this.modalService.popModal();
         }
         this._openModalCount = this.modalService.getModalCount();
+        this.afterClosed.next();
     }
 
     open() {

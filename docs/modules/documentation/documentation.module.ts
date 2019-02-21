@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { RouterModule, Routes } from '@angular/router';
 import { SchemaModule } from '../schema/schema.module';
@@ -206,6 +207,7 @@ import { DropdownInfiniteScrollExampleComponent } from './containers/dropdown/ex
 import { ModalInModalComponent } from './containers/modal/examples/modal-in-modal.component';
 import { ModalInModalSecondComponent } from './containers/modal/examples/modal-in-modal-second.component';
 import { ModalInModalExampleComponent } from './containers/modal/examples/modal-in-modal-example.component';
+import { ModalFullscreenExampleComponent } from './containers/modal/examples/modal-fullscreen-example.component';
 import { InfiniteScrollDocsComponent } from './containers/infinite-scroll/infinite-scroll-docs.component';
 import { InfiniteScrollBasicExampleComponent } from './containers/infinite-scroll/examples/infinite-scroll-basic-example/infinite-scroll-basic-example.component';
 import { TableCheckboxesExampleComponent } from './containers/table/examples/table-checkboxes-example.component';
@@ -216,17 +218,28 @@ import { FileInputExampleComponent } from './containers/file-input/examples/file
 import { FileInputCustomExampleComponent } from './containers/file-input/examples/file-input-custom-example/file-input-custom-example.component';
 import { FileInputDragDisabledExampleComponent } from './containers/file-input/examples/file-input-drag-disabled-example/file-input-drag-disabled-example.component';
 import { FileInputMaxExampleComponent } from './containers/file-input/examples/file-input-max-example/file-input-max-example.component';
+import { TokenDocsComponent } from './containers/token/token-docs.component';
+import { TokenExampleComponent } from './containers/token/examples/token-example/token-example.component';
+import { DatetimePickerDocsComponent } from './containers/datetime-picker/datetime-picker-docs.component';
+import { DatetimeExampleComponent } from './containers/datetime-picker/examples/datetime-example/datetime-example.component';
+import { DatetimeNonMeridianExampleComponent } from './containers/datetime-picker/examples/datetime-non-meridian-example/datetime-non-meridian-example.component';
+import { DatetimeProgramExampleComponent } from './containers/datetime-picker/examples/datetime-program-example/datetime-program-example.component';
+import { ScrollSpyDocsComponent } from './containers/scroll-spy/scroll-spy-docs.component';
+import { ScrollSpyExampleComponent } from './containers/scroll-spy/examples/scroll-spy-example/scroll-spy-example.component';
 
-import { InstallationDocsComponent } from './containers/installation/installation.component';
-import { UsageDocsComponent } from './containers/usage/usage.component';
-import { InternationalizationDocsComponent } from './containers/internationalization/internationalization.component';
+import { MultiInputDocsComponent } from './containers/multi-input/multi-input-docs.component';
+import { MultiInputExampleComponent } from './containers/multi-input/examples/multi-input-example/multi-input-example.component';
+
 import { HomeDocsComponent } from './containers/home/home.component';
+import { NewComponentComponent } from './containers/new-component/new-component.component';
 
 import { COMPONENT_SCHEMAS } from './containers/schemas';
 
 import * as hljs from 'highlight.js';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import { UtilsModule } from '../../../library/src/lib/utils/utils.module';
+import { MultiInputFilterExampleComponent } from './containers/multi-input/examples/multi-input-filter-example/multi-input-filter-example.component';
+import { MultiInputDisplaywithExampleComponent } from './containers/multi-input/examples/multi-input-displaywith-example/multi-input-displaywith-example.component';
 
 export function highlightJsFactory() {
     return hljs;
@@ -247,6 +260,7 @@ const ROUTES: Routes = [
             { path: 'calendar', component: CalendarDocsComponent },
             { path: 'comboboxInput', component: ComboboxInputDocsComponent },
             { path: 'datePicker', component: DatePickerDocsComponent },
+            { path: 'datetime-picker', component: DatetimePickerDocsComponent },
             { path: 'dropdown', component: DropdownDocsComponent },
             { path: 'file-input', component: FileInputDocsComponent },
             { path: 'form', component: FormDocsComponent },
@@ -260,9 +274,11 @@ const ROUTES: Routes = [
             { path: 'loadingSpinner', component: LoadingSpinnerDocsComponent },
             { path: 'menu', component: MenuDocsComponent },
             { path: 'modal', component: ModalDocsComponent },
+            { path: 'multi-input', component: MultiInputDocsComponent },
             { path: 'pagination', component: PaginationDocsComponent },
             { path: 'panel', component: PanelDocsComponent },
             { path: 'popover', component: PopoverDocsComponent },
+            { path: 'scroll-spy', component: ScrollSpyDocsComponent },
             { path: 'searchInput', component: SearchInputDocsComponent },
             { path: 'shellbar', component: ShellbarDocsComponent },
             { path: 'sideNavigation', component: SideNavigationDocsComponent },
@@ -273,10 +289,9 @@ const ROUTES: Routes = [
             { path: 'timePicker', component: TimePickerDocsComponent },
             { path: 'tree', component: TreeDocsComponent },
             { path: 'toggle', component: ToggleDocsComponent },
-            { path: 'installation', component: InstallationDocsComponent },
-            { path: 'usage', component: UsageDocsComponent },
-            // { path: 'rtl', component: InternationalizationDocsComponent }, TODO: restore this route when fundamental is RTL ready
-            { path: 'home', component: HomeDocsComponent }
+            { path: 'token', component: TokenDocsComponent },
+            { path: 'home', component: HomeDocsComponent },
+            { path: 'new-component', component: NewComponentComponent }
         ]
     }
 ];
@@ -298,6 +313,7 @@ const ROUTES: Routes = [
         ButtonDocsComponent,
         ButtonGroupDocsComponent,
         DropdownDocsComponent,
+        DatetimePickerDocsComponent,
         FileInputDocsComponent,
         FormDocsComponent,
         IconDocsComponent,
@@ -323,11 +339,9 @@ const ROUTES: Routes = [
         TileDocsComponent,
         TimeDocsComponent,
         TimePickerDocsComponent,
-        InstallationDocsComponent,
         ToggleDocsComponent,
-        UsageDocsComponent,
-        InternationalizationDocsComponent,
         HomeDocsComponent,
+        NewComponentComponent,
         DirectionalityComponent,
         ComponentExampleComponent,
         ExampleBackgroundComponent,
@@ -362,6 +376,9 @@ const ROUTES: Routes = [
         CalendarMondayStartExampleComponent,
         DatePickerRangeExampleComponent,
         DatePickerSingleExampleComponent,
+        DatetimeExampleComponent,
+        DatetimeNonMeridianExampleComponent,
+        DatetimeProgramExampleComponent,
         DropdownContextualMenuExampleComponent,
         DropdownDefaultExampleComponent,
         DropdownIconsExampleComponent,
@@ -409,6 +426,9 @@ const ROUTES: Routes = [
         ModalInModalComponent,
         ModalInModalSecondComponent,
         ModalInModalExampleComponent,
+        MultiInputDocsComponent,
+        MultiInputExampleComponent,
+        ModalFullscreenExampleComponent,
         PanelColumnsExampleComponent,
         PanelEdgeBleedExampleComponent,
         PanelExampleComponent,
@@ -418,6 +438,8 @@ const ROUTES: Routes = [
         PaginationExampleComponent,
         PopoverExampleComponent,
         PopoverProgrammaticOpenExampleComponent,
+        ScrollSpyDocsComponent,
+        ScrollSpyExampleComponent,
         SearchInputExampleComponent,
         SearchInputDynamicExampleComponent,
         ShellbarBasicExampleComponent,
@@ -457,19 +479,19 @@ const ROUTES: Routes = [
         StatusIconComponent,
         ToggleSizesExampleComponent,
         DisabledToggleExampleComponent,
-        ToggleBindingExampleComponent
+        ToggleBindingExampleComponent,
+        TokenDocsComponent,
+        TokenExampleComponent,
+        MultiInputFilterExampleComponent,
+        MultiInputDisplaywithExampleComponent
     ],
-    entryComponents: [
-        ModalContentComponent,
-        ModalInModalComponent,
-        ModalInModalSecondComponent,
-        AlertContentComponent
-    ],
+    entryComponents: [ModalContentComponent, ModalInModalComponent, ModalInModalSecondComponent, AlertContentComponent],
     imports: [
         HighlightJsModule.forRoot({
             provide: HIGHLIGHT_JS,
             useFactory: highlightJsFactory
         }),
+        MarkdownModule.forChild(),
         CommonModule,
         FormsModule,
         RouterModule.forChild(ROUTES),
@@ -477,9 +499,6 @@ const ROUTES: Routes = [
         UtilsModule,
         FundamentalNgxModule
     ],
-    providers: [
-        CopyService
-    ]
+    providers: [CopyService]
 })
 export class DocumentationModule {}
-

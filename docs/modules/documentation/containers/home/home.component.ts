@@ -8,4 +8,7 @@ export class HomeDocsComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {}
+
+    onLoad(event) {}
+    onError(event) {}
 }
