@@ -1,6 +1,7 @@
 <div *ngIf="isDropdown" class="fd-dropdown" [ngClass]="{ 'fd-dropdown--compact': compact, 'fd-dropdown--toolbar': toolbar }">
     <div class="fd-popover">
-        <div class="fd-popover__control" [popper]="popperContent" [popperTrigger]="'click'" [(popperPlacement)]="popperPlacement">
+        <div class="fd-popover__control" [popper]="popperContent" [popperTrigger]="'click'"
+             [popperStyles]="{'background-color': 'white', 'padding': '0px', 'z-index': '3'}">
             <button
                 fd-button
                 class="fd-dropdown__control fd-button"
@@ -23,7 +24,8 @@
 </div>
 <div *ngIf="!isDropdown" class="fd-popover"
     [ngClass]="{ 'fd-popover--right' : alignment == 'right'}">
-    <div [popper]="popperContent" [popperTrigger]="'click'" [(popperPlacement)]="popperPlacement"
+    <div [popper]="popperContent" [popperTrigger]="'click'"
+        [popperStyles]="{'background-color': 'white', 'padding': '0px', 'z-index': '3'}"
         #popoverControlWrapper
         class="fd-popover__control"
         [attr.aria-expanded]="this.disabled ? false : isOpen"
@@ -38,13 +40,7 @@
 </div>
 
 <popper-content #popperContent>
-    <div
-        [ngClass]="{'fd-popover__body': popoverBodyHasContent,
-                    'fd-popover__body--no-arrow': isDropdown || !arrow,
-                    'fd-popover__body--right' : alignment == 'right' }"
-        [attr.aria-hidden]="disabled ? true : !isOpen">
-        <div #popoverBodyContent>
-            <ng-content select="fd-popover-body"></ng-content>
-        </div>
+    <div #popoverBodyContent>
+        <ng-content select="fd-popover-body"></ng-content>
     </div>
 </popper-content>

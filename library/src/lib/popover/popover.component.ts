@@ -45,8 +45,6 @@ export class PopoverComponent implements OnInit, AfterViewInit, AfterViewChecked
     standard: boolean = false;
     @Input()
     toolbar: boolean = false;
-    @Input()
-    popperPlacement: string = 'bottom';
 
     popoverBodyHasContent: boolean = false;
 
@@ -117,11 +115,6 @@ export class PopoverComponent implements OnInit, AfterViewInit, AfterViewChecked
         } else {
             this.close();
         }
-    }
-
-    getPopoverBodyTop() {
-        let retVal = '20px';
-        return retVal;
     }
 
     constructor(

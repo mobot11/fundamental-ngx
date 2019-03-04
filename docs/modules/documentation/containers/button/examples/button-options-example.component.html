@@ -1,3 +1,20 @@
-<button fd-button>Regular Button</button>
+<button fd-button [popper]="popper1content" [popperTrigger]="'click'" [popperHideOnClickOutside]="true"
+    [popperStyles]="{'background-color': 'white', 'padding': '0px', 'z-index': '3'}">Button with Popover</button>
 <button fd-button [options]="'emphasized'">Emphasized Button</button>
 <button fd-button [options]="'light'">Light Button</button>
+
+<popper-content #popper1content>
+    <fd-menu>
+        <fd-menu-list>
+            <li fd-menu-item>
+                <a [attr.href]="'#'">Option 1</a>
+            </li>
+            <li fd-menu-item>
+                <a [routerLink]="'#'">Option 2</a>
+            </li>
+            <li fd-menu-item>
+                Option 3
+            </li>
+        </fd-menu-list>
+    </fd-menu>
+</popper-content>

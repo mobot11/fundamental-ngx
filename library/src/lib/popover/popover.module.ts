@@ -9,7 +9,7 @@ import { NgxPopperModule } from 'ngx-popper';
 
 @NgModule({
     declarations: [PopoverComponent, PopoverControlComponent, PopoverBodyComponent],
-    imports: [CommonModule, UtilsModule, NgxPopperModule.forRoot({disableDefaultStyling: true})],
+    imports: [CommonModule, UtilsModule, NgxPopperModule.forRoot()],
     exports: [PopoverComponent, PopoverControlComponent, PopoverBodyComponent]
 })
 export class PopoverModule {}

@@ -240,6 +240,7 @@ import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
 import { UtilsModule } from '../../../library/src/lib/utils/utils.module';
 import { MultiInputFilterExampleComponent } from './containers/multi-input/examples/multi-input-filter-example/multi-input-filter-example.component';
 import { MultiInputDisplaywithExampleComponent } from './containers/multi-input/examples/multi-input-displaywith-example/multi-input-displaywith-example.component';
+import { NgxPopperModule } from 'ngx-popper';
 
 export function highlightJsFactory() {
     return hljs;
@@ -497,7 +498,8 @@ const ROUTES: Routes = [
         RouterModule.forChild(ROUTES),
         SchemaModule.forRoot(COMPONENT_SCHEMAS),
         UtilsModule,
-        FundamentalNgxModule
+        FundamentalNgxModule,
+        NgxPopperModule
     ],
     providers: [CopyService]
 })
