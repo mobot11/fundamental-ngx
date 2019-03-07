@@ -14,11 +14,23 @@ import {
 } from '@angular/core';
 import { HashService } from '../utils/hash.service';
 
+import Popper from 'popper.js';
+
 @Component({
     selector: 'fd-popover',
-    templateUrl: './popover.component.html'
+    templateUrl: './popover.component.html',
+    styleUrls: ['./popover.component.scss']
 })
 export class PopoverComponent implements OnInit, AfterViewInit, AfterViewChecked {
+    @Input()
+    placement: Popper.Placement = 'bottom-start';
+    @Input()
+    positionFixed: boolean = false;
+    @Input()
+    eventsEnabled: boolean = true;
+    @Input()
+    modifiers: Popper.Modifiers;
+
     @Input()
     alignment: string = '';
     @Input()
@@ -48,6 +60,8 @@ export class PopoverComponent implements OnInit, AfterViewInit, AfterViewChecked
 
     popoverBodyHasContent: boolean = false;
 
+    private popper: Popper;
+
     @Output()
     popoverClosed: EventEmitter<any> = new EventEmitter<any>();
 
@@ -55,6 +69,9 @@ export class PopoverComponent implements OnInit, AfterViewInit, AfterViewChecked
 
     @ViewChild('popoverControlWrapper')
     popoverControl: ElementRef;
+
+    @ViewChild('popoverDropdownControlWrapper')
+    popoverDropdownControl: ElementRef;
 
     @ViewChild('popoverBodyContent')
     popoverBodyContent;
@@ -64,14 +81,50 @@ export class PopoverComponent implements OnInit, AfterViewInit, AfterViewChecked
     close() {
         if (this.isOpen) {
             this.isOpen = false;
+            if (this.popper) {
+                this.popper.destroy();
+            }
+            this.popper = null;
             this.popoverClosed.emit();
         }
     }
 
     open() {
         if (!this.isOpen) {
+            const popoverOptions = {
+                placement: this.placement,
+                positionFixed: this.positionFixed,
+                eventsEnabled: this.eventsEnabled,
+                modifiers: this.modifiers
+            };
+            if (this.alignment === 'right') {
+                popoverOptions.placement = 'bottom-end';
+            }
+            this.popper = new Popper(
+                this.getPopoverControl(),
+                this.getPopoverContent(),
+                popoverOptions
+            );
             this.isOpen = true;
         }
+    }
+
+    getPopoverContent() {
+        let retVal;
+        if (this.popoverBodyContent) {
+            retVal = this.popoverBodyContent.nativeElement;
+        }
+        return retVal;
+    }
+
+    getPopoverControl() {
+        let retVal;
+        if (this.popoverControl) {
+            retVal = this.popoverControl.nativeElement;
+        } else if (this.popoverDropdownControl) {
+            retVal = this.popoverDropdownControl.nativeElement;
+        }
+        return retVal;
     }
 
     @HostListener('document:keydown.escape', [])
